@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
     create_table :users do |t|
       t.string :screen_name
       t.string :name
-      t.string :twitter_id
+      t.string :twitter_id, unique: true
       t.text :description
       t.boolean :protected
       t.text :raw
@@ -13,6 +13,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :twitter_secret
 
       t.timestamps
+
     end
+    add_index :users, [:twitter_id], :unique => true
   end
 end
